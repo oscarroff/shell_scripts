@@ -9,7 +9,7 @@
 feed_url="https://tinywords.com/feed/"
 feed_data=$(curl -s "$feed_url")
 
-echo "Ｏ＿ＲＯＦＦ  Ｐｏｅｍ  ｏｆ  ｔｈｅ  Ｄａｙ"
+echo "Ｏ＿ＲＯＦＦ  Ｔｉｎｙ  Ｐｏｅｍ  ｏｆ  ｔｈｅ  Ｄａｙ"
 echo "Source: https://tinywords.com/"
 echo
 echo "Published: $(echo "$feed_data" \

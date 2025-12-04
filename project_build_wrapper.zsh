@@ -32,7 +32,7 @@ if [ -e "$PWD/${project_name}" ]; then
 fi
 
 # Run project builder, update shell (.zshrc) and load project
-$WDIR/shell_scripts/new_c_project.sh "$project_name"
+$WDIR/shell_scripts/cproject_build.sh "$project_name"
 local DST="$PWD/${project_name}/${project_name}_public"
 echo "Opening project..."
 echo

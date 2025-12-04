@@ -7,6 +7,7 @@
 # - WIP stands for Work-in-Progress, an envp used for a set of shell alias shortcuts
 # - add alias sets up a "cd $(project)" shortcut
 # - Git repo expects a URL to an active repository
+# - If Libft (a custom C library) is required, it is either cloned from its own repository (preferred) or copied locally
 #
 # Oscar Roff December 2025
 

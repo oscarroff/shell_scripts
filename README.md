@@ -1,5 +1,5 @@
 # shell_scripts
-Some cute scripts and curiosities written for bash and zsh
+Some cute scripts and curiosities written for Bash and Zsh.
 
 ## tinypoem_of_the_day
 A very nice little Zsh script to fetch and display the poem of the day from
