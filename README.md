@@ -2,8 +2,7 @@
 Some cute scripts and curiosities written for Bash and Zsh.
 
 ## tinypoem_of_the_day
-A very nice little Zsh script to fetch and display the poem of the day from
-the even nicer blog [tinywords](https://tinywords.com/), please check them out!
+Ever felt like you just need to take a moment? Who am I and what am I doing here? `tinypoem_of_the_day` is here to help! A very nice little Zsh script to fetch and display the poem of the day from the even nicer blog [tinywords](https://tinywords.com/), please check them out!
 This was a first attempt at fetching data from a website using a shell script. The function `xmllint` came in especially handy for parsing the xml source. `perl` also proved useful for formatting HTML text.
 Written for zsh but easily portable to your shell of choice
 
