@@ -9,6 +9,10 @@
 feed_url="https://tinywords.com/feed/"
 feed_data=$(curl -s "$feed_url")
 
+decode_html() {
+	sed 's/&quot;/"/g; s/&apos;/'\''/g; s/&lt;/</g; s/&gt;/>/g; s/&#39;/'\''/g; s/&#8217;/'\''/g; s/&#8216;/'\''/g; s/&#8220;/"/g; s/&#8221;/"/g; s/&#8211;/–/g; s/&#8212;/—/g; s/&nbsp;/ /g; s/&amp;/\&/g;'
+}
+
 echo "Ｏ＿ＲＯＦＦ  Ｔｉｎｙ  Ｐｏｅｍ  ｏｆ  ｔｈｅ  Ｄａｙ"
 echo "Source: https://tinywords.com/"
 echo
@@ -27,4 +31,4 @@ echo
 echo "$(echo "$feed_data" \
 	| xmllint --xpath 'string(//item[1]/description)' \
 	- 2>/dev/null \
-	| perl -MHTML::Entities -C -pe 'decode_entities($_);')"
+	| decode_html)"
