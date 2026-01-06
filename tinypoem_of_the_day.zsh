@@ -10,7 +10,10 @@ feed_url="https://tinywords.com/feed/"
 feed_data=$(curl -s "$feed_url")
 
 decode_html() {
-	sed 's/&quot;/"/g; s/&apos;/'\''/g; s/&lt;/</g; s/&gt;/>/g; s/&#39;/'\''/g; s/&#8217;/'\''/g; s/&#8216;/'\''/g; s/&#8220;/"/g; s/&#8221;/"/g; s/&#8211;/–/g; s/&#8212;/—/g; s/&nbsp;/ /g; s/&amp;/\&/g;'
+	sed 's/&quot;/"/g; s/&apos;/'\''/g; s/&lt;/</g; s/&gt;/>/g;
+		s/&#39;/'\''/g; s/&#8217;/'\''/g; s/&#8216;/'\''/g; s/&#8220;/"/g;
+		s/&#8221;/"/g; s/&#8211;/–/g; s/&#8212;/—/g; s/&nbsp;/ /g;
+		s/&#38;/\&/g; s/&amp;/\&/g;'
 }
 
 echo "Ｏ＿ＲＯＦＦ  Ｔｉｎｙ  Ｐｏｅｍ  ｏｆ  ｔｈｅ  Ｄａｙ"
