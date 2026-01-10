@@ -33,7 +33,10 @@ temp_water=$(json_get "$feed_data" "['properties']['measurement']['temp_water']"
 echo "Ｏ＿ＲＯＦＦ  Ｈｉｖｅ  Ｓｗｉｍ  ？"
 echo "Source: https://uiras.fvh.io/"
 echo
-if [ $(echo "$temp_water < 1" | bc) -eq 1 ]; then
+if [ $(echo "$temp_water < 0" | bc) -eq 1 ]; then
+	echo "Clearly not, even the thermometer has left the water."
+elif [ $(echo "$temp_water >= 0" | bc) -eq 1 ] \
+	&& [ $(echo "$temp_water < 1" | bc) -eq 1 ]; then
 	echo "${BLUE}Watch out for the icebergs!"
 elif [ $(echo "$temp_water >= 1" | bc) -eq 1 ] \
 	&& [ $(echo "$temp_water < 15" | bc) -eq 1 ]; then
