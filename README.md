@@ -8,6 +8,13 @@ Written for zsh but easily portable to your shell of choice
 
 *Oscar Roff December 2025*
 
+## hive_swim
+Of the many bonuses that come with studying at Hive, Helsinki, one of the foremost for me is proximity of swimming spots. Our closest dunk is located across the street at the mattolaituri (carpet jetty) on Sörnäisten rantatie. Conveniently enough this project [UiRaS](https://uiras.fvh.io/) installed a thermometer there back in 2020 (including at a bunch of other locations across the capital region) and the data is publicly accessible.
+The code uses `curl` again for fetching the data and a `python3` helper function to fetch the relevant data. It then outputs a suggested course of action in answer to the assumed question: "Swim?" Easter eggs in the code for more extreme condition.s
+Ironically enough, written in the middle of a deep freeze winter.
+
+*Oscar Roff January 2026*
+
 ## cproject_build
 A Bash script for starting a new C project, developed while studying at Hive, Helsinki.
 Usage:
