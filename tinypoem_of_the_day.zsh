@@ -16,7 +16,7 @@ decode_html() {
 		s/&#38;/\&/g; s/&amp;/\&/g; s/&#8230;/.../g;'
 }
 
-echo "Ｏ＿ＲＯＦＦ  Ｔｉｎｙ  Ｐｏｅｍ  ｏｆ  ｔｈｅ  Ｄａｙ"
+echo "O _ R O F F   T i n y   P o e m   o f   t h e   D a y"
 echo "Source: https://tinywords.com/"
 echo
 echo "Published: $(echo "$feed_data" \

@@ -63,7 +63,7 @@ for day in data['MenusForDays']:
 "
 }
 
-echo "Ｏ＿ＲＯＦＦ  ＴｅａＫ  Ｍｅｎｕ"
+echo "O _ R O F F   T e a K   M e n u"
 echo
 # Check if menu exists for today
 if [ "$menu_exists" != "yes" ]; then

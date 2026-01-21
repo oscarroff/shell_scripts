@@ -2,7 +2,7 @@
 
 # New Project Wrapper
 
-echo "Ｏ＿ＲＯＦＦ  Ｐｒｏｊｅｃｔ  Ｂｕｉｌｄｅｒ"
+echo "O _ R O F F   P r o j e c t   B u i l d e r"
 echo
 # Set project type e.g. C, CPP
 if [ -n "$1" ]; then
