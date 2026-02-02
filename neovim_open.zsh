@@ -15,7 +15,7 @@ fi
 local project_name=$(basename "$project_dir" | sed 's/_public$//')
 if [[ -n "$project_dir/compile_commands.json" ]]; then
 	if [[ ! -x "$project_dir"/* ]] || [[ "$project_dir/Makefile" -nt "$project_dir"/* ]]; then
-		(cd "$project_dir" && bear -- make)
+		(cd "$project_dir" && compiledb make)
 	fi
 fi
 if [[ -f "$project_dir/Makefile" ]]; then

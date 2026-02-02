@@ -16,7 +16,7 @@ local project_name=$(basename "$project_dir" | sed 's/_public$//')
 if [[ ! -f "$project_dir/compile_commands.json" ]] \
 	|| grep -q '\[[^]]*\]' "$project_dir/compile_commands.json"; then
 	if [[ ! -x "$project_dir"/* ]] || [[ "$project_dir/Makefile" -nt "$project_dir"/* ]]; then
-		(cd "$project_dir" && bear -- make)
+		(cd "$project_dir" && compiledb make)
 	fi
 fi
 if [[ -d "$project_dir/src" ]] && [[ -f "$project_dir/src/main.c" ]]; then
