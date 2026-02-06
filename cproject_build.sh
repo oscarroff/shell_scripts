@@ -22,7 +22,6 @@ if [ ! -d "$WDIR/template" ]; then
 fi
 SRC="$(cd "$WDIR/template" && pwd -P)" || { echo "Error: cannot fetch paths" >&2; exit 2; }
 PWD_REAL="$(pwd -P)" || { echo "Error: cannot fetch paths" >&2; exit 2; }
-EXCLUDE="new_project.sh"
 
 # Error check: setup cannot occur inside template directory (danger of recursion)
 if [[ "$PWD_REAL" == "$SRC"* ]]; then
@@ -51,11 +50,12 @@ if [ "${work_in_progress}" = "Y" ] || [ "${work_in_progress}" = "y" ]; then
 	perl -pi -e "s|(export WIP=).*|\1${DST}|" "$HOME/.zshrc"
 fi
 
-echo -n "Add alias? (blank for no, [Y] for project name): "
+echo -n "Add alias? [Y/n] ([Y] uses project name, longer word becomes custom alias): "
 read -r zsh_alias
 if [ "${zsh_alias}" = 'Y' ] || [ "${zsh_alias}" = 'y' ]; then
 	perl -pi -e "print \"alias ${project_name}=\\\"cd ${DST}\\\"\n\" if /##ALIAS/" "$HOME/.zshrc"
-elif [ -n "${zsh_alias}" ]; then
+# elif [ "${zsh_alias}" = 'N' ] || [ "${zsh_alias}" = 'n' ]; then
+elif [ -n "${zsh_alias}" ] && [ "${zsh_alias}" != 'N' ] && [ "${zsh_alias}" != 'n' ]; then
 	perl -pi -e "print \"alias ${zsh_alias}=\\\"cd ${DST}\\\"\n\" if /##ALIAS/" "$HOME/.zshrc"
 fi
 
@@ -66,9 +66,18 @@ read -r libft_inc
 echo
 
 # Copy template files to new project (excluding this script if found inside template directory)
+EXCLUDE1="new_project.sh"
+EXCLUDE2="compile_commands.json"
+if [ "${libft_inc}" = "Y" ] || [ "${libft_inc}" = "y" ]; then
+	EXCLUDE3="Makefile_nolibft"
+else
+	EXCLUDE3="Makefile"
+fi
 echo "Copying template..."
 for f in "$SRC"/*; do
-	[ "$(basename -- "$f")" = "$EXCLUDE" ] && continue
+	[[ "$(basename -- "$f")" = "$EXCLUDE1"
+	|| "$(basename -- "$f")" = "$EXCLUDE2"
+	|| "$(basename -- "$f")" = "$EXCLUDE3" ]] && continue
 	cp -a "$f" "$DST/" >/dev/null 2>&1 || true
 done
 cp -a "$SRC/.gitignore" "$DST/" >/dev/null 2>&1 || true
@@ -79,10 +88,16 @@ grep -rlI 'template' "$DST" | xargs -r perl -pi -e "
 	s|template|${project_name}|g;
 	s|TEMPLATE|\U${project_name}\E|g;
 	"
+if [ "${libft_inc}" = "N" ] || [ "${libft_inc}" = "n" ]; then
+	grep -rlI 'libft.h' . | xargs -r perl -0777 -pi -e '
+	s!^\s*#\s*include\s*"libft\.h".*\n\n!\n!gm'
+fi
 ( cd "$DST/src" && for f in template.*; do [ -e "$f" ] \
 	&& mv "$f" "${f/template/$project_name}"; done ) 2>/dev/null || true
 ( cd "$DST/inc" && for f in template.*; do [ -e "$f" ] \
 	&& mv "$f" "${f/template/$project_name}"; done ) 2>/dev/null || true
+( cd "$DST/" && mv Makefile* "Makefile" ) 2>/dev/null || true
+# include "libft.h"
 
 # Clone libft from git repo (preferred) or local copy
 if [ "${libft_inc}" = "Y" ] || [ "${libft_inc}" = "y" ]; then
